@@ -1,5 +1,11 @@
 package math130.gui;
 
+/**
+ * Hard AI that:
+ * 1. tries to win
+ * 2. blocks opponent
+ * 3. otherwise picks first available spot
+ */
 public class HardAIPlayer extends Player {
 
     public HardAIPlayer(char symbol) {
@@ -11,16 +17,16 @@ public class HardAIPlayer extends Player {
 
         char[][] b = board.getBoard();
 
-        // 1. try to win
+        // Try to win first
         int[] winMove = findBestMove(b, symbol);
         if (winMove != null) return winMove;
 
-        // 2. block opponent
+        // Block opponent
         char opponent = (symbol == 'X') ? 'O' : 'X';
         int[] blockMove = findBestMove(b, opponent);
         if (blockMove != null) return blockMove;
 
-        // 3. fallback random
+        // Otherwise take first empty spot
         for (int r = 0; r < 3; r++) {
             for (int c = 0; c < 3; c++) {
                 if (b[r][c] == ' ') {
@@ -32,30 +38,24 @@ public class HardAIPlayer extends Player {
         return null;
     }
 
+    // Finds a move that completes or blocks a line
     private int[] findBestMove(char[][] b, char target) {
 
-        // rows
         for (int r = 0; r < 3; r++) {
-            if (count(b[r][0], b[r][1], b[r][2], target) == 2) {
+            if (count(b[r][0], b[r][1], b[r][2], target) == 2)
                 return emptySpot(b, r, 0, r, 1, r, 2);
-            }
         }
 
-        // columns
         for (int c = 0; c < 3; c++) {
-            if (count(b[0][c], b[1][c], b[2][c], target) == 2) {
+            if (count(b[0][c], b[1][c], b[2][c], target) == 2)
                 return emptySpot(b, 0, c, 1, c, 2, c);
-            }
         }
 
-        // diagonals
-        if (count(b[0][0], b[1][1], b[2][2], target) == 2) {
-            return emptySpot(b, 0,0, 1,1, 2,2);
-        }
+        if (count(b[0][0], b[1][1], b[2][2], target) == 2)
+            return emptySpot(b, 0,0,1,1,2,2);
 
-        if (count(b[0][2], b[1][1], b[2][0], target) == 2) {
-            return emptySpot(b, 0,2, 1,1, 2,0);
-        }
+        if (count(b[0][2], b[1][1], b[2][0], target) == 2)
+            return emptySpot(b, 0,2,1,1,2,0);
 
         return null;
     }

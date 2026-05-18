@@ -4,7 +4,20 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+/**
+ * GameController controls all game logic and connects the JavaFX UI
+ * to the backend Tic Tac Toe game system.
+ *
+ * Responsibilities:
+ * - Handles button clicks from the board
+ * - Switches between players
+ * - Runs AI moves
+ * - Checks for win/tie conditions
+ * - Controls menu navigation (home + game modes)
+ */
 public class GameController {
+
+    // ---------------- GAME STATE ----------------
 
     private GameBoard board = new GameBoard();
 
@@ -14,7 +27,8 @@ public class GameController {
 
     private boolean gameOver = true;
 
-    // UI
+    // ---------------- UI ELEMENTS ----------------
+
     @FXML private Button b00, b01, b02;
     @FXML private Button b10, b11, b12;
     @FXML private Button b20, b21, b22;
@@ -26,16 +40,26 @@ public class GameController {
 
     @FXML private Label statusLabel;
 
+    // ---------------- INITIALIZATION ----------------
+
+    /**
+     * Automatically runs when the FXML loads.
+     * Starts the application in the home screen.
+     */
     @FXML
     public void initialize() {
         goHome();
     }
 
-    // ---------------- HOME ----------------
+    // ---------------- HOME SCREEN ----------------
 
+    /**
+     * Resets everything and returns user to main menu.
+     */
     @FXML
     public void goHome() {
         gameOver = true;
+
         board.resetBoard();
         clearBoardUI();
 
@@ -45,32 +69,47 @@ public class GameController {
         homeButton.setVisible(false);
     }
 
+    /**
+     * Shows or hides the game mode menu buttons.
+     */
     private void showMenu(boolean show) {
         pvpButton.setVisible(show);
         easyButton.setVisible(show);
         hardButton.setVisible(show);
     }
 
-    // ---------------- START MODES ----------------
+    // ---------------- START GAME MODES ----------------
 
+    /**
+     * Starts Player vs Player mode.
+     */
     @FXML
     public void startPvP() {
         setupGame(new HumanPlayer('X'), new HumanPlayer('O'));
         statusLabel.setText("PvP Mode");
     }
 
+    /**
+     * Starts Player vs Easy AI mode.
+     */
     @FXML
     public void startEasyAI() {
         setupGame(new HumanPlayer('X'), new EasyAIPlayer('O'));
         statusLabel.setText("Easy AI Mode");
     }
 
+    /**
+     * Starts Player vs Hard AI mode.
+     */
     @FXML
     public void startHardAI() {
         setupGame(new HumanPlayer('X'), new HardAIPlayer('O'));
         statusLabel.setText("Hard AI Mode");
     }
 
+    /**
+     * Shared setup method for all game modes.
+     */
     private void setupGame(Player p1, Player p2) {
         player1 = p1;
         player2 = p2;
@@ -85,25 +124,34 @@ public class GameController {
         homeButton.setVisible(false);
     }
 
-    // ---------------- MOVES ----------------
+    // ---------------- PLAYER MOVES ----------------
 
+    /**
+     * Handles a move when a board button is clicked.
+     */
     private void handleMove(int r, int c, Button button) {
 
         if (gameOver) return;
 
+        // Try to place move on board
         if (!board.placeMove(r, c, currentPlayer.getSymbol())) return;
 
+        // Update UI
         button.setText(String.valueOf(currentPlayer.getSymbol()));
 
+        // Check if game ended
         if (checkGameEnd()) return;
 
         switchTurn();
 
-        if (currentPlayer != player1 && (player2 instanceof EasyAIPlayer || player2 instanceof HardAIPlayer)) {
+        // If it's AI's turn, trigger AI move
+        if (currentPlayer instanceof EasyAIPlayer ||
+                currentPlayer instanceof HardAIPlayer) {
             aiMove();
         }
     }
 
+    // Board button handlers
     @FXML public void handle00() { handleMove(0,0,b00); }
     @FXML public void handle01() { handleMove(0,1,b01); }
     @FXML public void handle02() { handleMove(0,2,b02); }
@@ -116,8 +164,11 @@ public class GameController {
     @FXML public void handle21() { handleMove(2,1,b21); }
     @FXML public void handle22() { handleMove(2,2,b22); }
 
-    // ---------------- AI ----------------
+    // ---------------- AI LOGIC ----------------
 
+    /**
+     * Executes AI move and updates the board.
+     */
     private void aiMove() {
 
         int[] move = currentPlayer.makeMove(board);
@@ -125,7 +176,8 @@ public class GameController {
 
         board.placeMove(move[0], move[1], currentPlayer.getSymbol());
 
-        getButton(move[0], move[1]).setText(String.valueOf(currentPlayer.getSymbol()));
+        getButton(move[0], move[1])
+                .setText(String.valueOf(currentPlayer.getSymbol()));
 
         if (checkGameEnd()) return;
 
@@ -134,6 +186,9 @@ public class GameController {
 
     // ---------------- GAME LOGIC ----------------
 
+    /**
+     * Checks for win or tie conditions.
+     */
     private boolean checkGameEnd() {
 
         char winner = board.checkWinner();
@@ -155,18 +210,27 @@ public class GameController {
         return false;
     }
 
+    /**
+     * Switches turn between player 1 and player 2.
+     */
     private void switchTurn() {
         currentPlayer = (currentPlayer == player1) ? player2 : player1;
     }
 
-    // ---------------- UI ----------------
+    // ---------------- UI HELPERS ----------------
 
+    /**
+     * Clears all buttons on the board.
+     */
     private void clearBoardUI() {
         b00.setText(""); b01.setText(""); b02.setText("");
         b10.setText(""); b11.setText(""); b12.setText("");
         b20.setText(""); b21.setText(""); b22.setText("");
     }
 
+    /**
+     * Gets button reference based on row/column.
+     */
     private Button getButton(int r, int c) {
         if (r == 0 && c == 0) return b00;
         if (r == 0 && c == 1) return b01;

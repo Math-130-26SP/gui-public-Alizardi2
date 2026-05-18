@@ -3,43 +3,47 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx/17.0.12"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="math130.gui.GameController"
-      spacing="10">
+<VBox prefHeight="139.0" prefWidth="343.0" spacing="10" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="math130.gui.GameController">
 
     <children>
 
         <!-- STATUS -->
-        <Label fx:id="statusLabel"
-               text="Choose a Game Mode"
-               prefWidth="600"
-               alignment="CENTER"/>
+        <Label fx:id="statusLabel" alignment="CENTER" prefWidth="600" text="Choose a Game Mode" />
 
         <!-- MENU -->
         <HBox spacing="10">
-            <Button fx:id="pvpButton" text="PvP" onAction="#startPvP"/>
-            <Button fx:id="easyButton" text="Easy AI" onAction="#startEasyAI"/>
-            <Button fx:id="hardButton" text="Hard AI" onAction="#startHardAI"/>
-            <Button fx:id="homeButton" text="Go Home" onAction="#goHome" visible="false"/>
+            <Button fx:id="homeButton" onAction="#goHome" text="Go Home" visible="false" />
+            <Button fx:id="pvpButton" onAction="#startPvP" text="PvP" />
+            <Button fx:id="easyButton" onAction="#startEasyAI" text="Easy AI" />
+            <Button fx:id="hardButton" onAction="#startHardAI" text="Hard AI" />
         </HBox>
 
         <!-- BOARD -->
-        <GridPane gridLinesVisible="true">
+        <GridPane gridLinesVisible="true" prefHeight="55.0" prefWidth="219.0" translateX="135.0">
 
             <children>
-                <Button fx:id="b00" onAction="#handle00"/>
-                <Button fx:id="b01" onAction="#handle01" GridPane.columnIndex="1"/>
-                <Button fx:id="b02" onAction="#handle02" GridPane.columnIndex="2"/>
+                <Button fx:id="b00" onAction="#handle00" />
+                <Button fx:id="b01" onAction="#handle01" GridPane.columnIndex="1" />
+                <Button fx:id="b02" onAction="#handle02" GridPane.columnIndex="2" />
 
-                <Button fx:id="b10" onAction="#handle10" GridPane.rowIndex="1"/>
-                <Button fx:id="b11" onAction="#handle11" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-                <Button fx:id="b12" onAction="#handle12" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                <Button fx:id="b10" onAction="#handle10" GridPane.rowIndex="1" />
+                <Button fx:id="b11" onAction="#handle11" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Button fx:id="b12" onAction="#handle12" GridPane.columnIndex="2" GridPane.rowIndex="1" />
 
-                <Button fx:id="b20" onAction="#handle20" GridPane.rowIndex="2"/>
-                <Button fx:id="b21" onAction="#handle21" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-                <Button fx:id="b22" onAction="#handle22" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                <Button fx:id="b20" onAction="#handle20" GridPane.rowIndex="2" />
+                <Button fx:id="b21" onAction="#handle21" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Button fx:id="b22" onAction="#handle22" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             </children>
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
 
         </GridPane>
 

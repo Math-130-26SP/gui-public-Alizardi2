@@ -1,5 +1,9 @@
 package math130.gui;
 
+/**
+ * Represents the Tic Tac Toe board logic.
+ * Handles moves, win checking, and board state.
+ */
 public class GameBoard {
 
     private char[][] board;
@@ -9,6 +13,9 @@ public class GameBoard {
         resetBoard();
     }
 
+    /**
+     * Clears the board for a new game.
+     */
     public void resetBoard() {
         for (int r = 0; r < 3; r++) {
             for (int c = 0; c < 3; c++) {
@@ -17,7 +24,16 @@ public class GameBoard {
         }
     }
 
+    /**
+     * Places a move if the spot is empty.
+     */
     public boolean placeMove(int r, int c, char symbol) {
+
+        // Safety check (prevents crashes from invalid input)
+        if (r < 0 || r > 2 || c < 0 || c > 2) {
+            throw new IllegalArgumentException("Invalid move position");
+        }
+
         if (board[r][c] == ' ') {
             board[r][c] = symbol;
             return true;
@@ -25,10 +41,16 @@ public class GameBoard {
         return false;
     }
 
+    /**
+     * Returns the board array.
+     */
     public char[][] getBoard() {
         return board;
     }
 
+    /**
+     * Checks if the board is full (tie condition).
+     */
     public boolean isFull() {
         for (int r = 0; r < 3; r++) {
             for (int c = 0; c < 3; c++) {
@@ -38,8 +60,13 @@ public class GameBoard {
         return true;
     }
 
+    /**
+     * Checks all win conditions (rows, columns, diagonals).
+     * @return winner symbol or ' ' if no winner
+     */
     public char checkWinner() {
-        // rows
+
+        // Check rows
         for (int r = 0; r < 3; r++) {
             if (board[r][0] != ' ' &&
                     board[r][0] == board[r][1] &&
@@ -48,7 +75,7 @@ public class GameBoard {
             }
         }
 
-        // columns
+        // Check columns
         for (int c = 0; c < 3; c++) {
             if (board[0][c] != ' ' &&
                     board[0][c] == board[1][c] &&
@@ -57,7 +84,7 @@ public class GameBoard {
             }
         }
 
-        // diagonals
+        // Check diagonals
         if (board[0][0] != ' ' &&
                 board[0][0] == board[1][1] &&
                 board[1][1] == board[2][2]) {

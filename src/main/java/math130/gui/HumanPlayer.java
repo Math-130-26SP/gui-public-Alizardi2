@@ -1,5 +1,9 @@
 package math130.gui;
 
+/**
+ * Human player class.
+ * Does not calculate moves — UI handles it instead.
+ */
 public class HumanPlayer extends Player {
 
     public HumanPlayer(char symbol) {
@@ -8,6 +12,6 @@ public class HumanPlayer extends Player {
 
     @Override
     public int[] makeMove(GameBoard board) {
-        return null; // GUI will handle moves directly
+        return null; // handled by button clicks in GUI
     }
 }
