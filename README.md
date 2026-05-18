@@ -42,17 +42,21 @@ The game is built using a GUI created in JavaFX with SceneBuilder and it has a 3
 - “Go Home” reset functionality
 
 ---
+#  UML Wireframe
 
+![1](images/images/umlOne.png)
 
+![2](images/images/umlTwo.png)
 
 ##  GUI Wireframe
 
-![Home Wireframe](images/images/imageOne.png)
+![1](images/images/imageOne.png)
 
-![Game Wireframe](images/images/imageTwo.png)
+![2](images/images/imageTwo.png)
 
-![UML Diagram](images/images/imageThree.png)
-
+![3](images/images/imageThree.png)
+##  Recording
+![Gameplay Demo](images/images/recording.gif)
 ---
 
 
