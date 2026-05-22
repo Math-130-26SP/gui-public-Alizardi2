@@ -9,15 +9,15 @@ import javafx.scene.control.Label;
  * to the backend Tic Tac Toe game system.
  *
  * Responsibilities:
- * - Handles button clicks from the board
- * - Switches between players
- * - Runs AI moves
- * - Checks for win/tie conditions
- * - Controls menu navigation (home + game modes)
+ * - itll handle button clicks from the board
+ * - the switches between players
+ * - runs AI moves
+ * - checks for win and tie conditions
+ * - Controls menu navigation which is really just the home and the game modes
  */
 public class GameController {
 
-    // ---------------- GAME STATE ----------------
+    // The Game State
 
     private GameBoard board = new GameBoard();
 
@@ -27,7 +27,7 @@ public class GameController {
 
     private boolean gameOver = true;
 
-    // ---------------- UI ELEMENTS ----------------
+    // The UI elements
 
     @FXML private Button b00, b01, b02;
     @FXML private Button b10, b11, b12;
@@ -40,10 +40,10 @@ public class GameController {
 
     @FXML private Label statusLabel;
 
-    // ---------------- INITIALIZATION ----------------
+    // The instalation
 
     /**
-     * Automatically runs when the FXML loads.
+     * will automatically runs when the FXML loads.
      * Starts the application in the home screen.
      */
     @FXML
@@ -51,7 +51,7 @@ public class GameController {
         goHome();
     }
 
-    // ---------------- HOME SCREEN ----------------
+    // This the homescreen
 
     /**
      * Resets everything and returns user to main menu.
@@ -78,7 +78,7 @@ public class GameController {
         hardButton.setVisible(show);
     }
 
-    // ---------------- START GAME MODES ----------------
+    // The Game Modes
 
     /**
      * Starts Player vs Player mode.
@@ -124,7 +124,7 @@ public class GameController {
         homeButton.setVisible(false);
     }
 
-    // ---------------- PLAYER MOVES ----------------
+    // The Player Moves
 
     /**
      * Handles a move when a board button is clicked.
@@ -144,7 +144,7 @@ public class GameController {
 
         switchTurn();
 
-        // If it's AI's turn, trigger AI move
+        // If its AIs turn then trigger the AI move
         if (currentPlayer instanceof EasyAIPlayer ||
                 currentPlayer instanceof HardAIPlayer) {
             aiMove();
@@ -164,8 +164,7 @@ public class GameController {
     @FXML public void handle21() { handleMove(2,1,b21); }
     @FXML public void handle22() { handleMove(2,2,b22); }
 
-    // ---------------- AI LOGIC ----------------
-
+    // All the Ai's logic
     /**
      * Executes AI move and updates the board.
      */
@@ -184,7 +183,7 @@ public class GameController {
         switchTurn();
     }
 
-    // ---------------- GAME LOGIC ----------------
+    // The Game Logic
 
     /**
      * Checks for win or tie conditions.
@@ -217,7 +216,7 @@ public class GameController {
         currentPlayer = (currentPlayer == player1) ? player2 : player1;
     }
 
-    // ---------------- UI HELPERS ----------------
+    // All the UI handelers
 
     /**
      * Clears all buttons on the board.
@@ -229,7 +228,7 @@ public class GameController {
     }
 
     /**
-     * Gets button reference based on row/column.
+     * Gets button reference based on row and column.
      */
     private Button getButton(int r, int c) {
         if (r == 0 && c == 0) return b00;

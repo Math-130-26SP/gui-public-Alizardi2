@@ -2,7 +2,7 @@ package math130.gui;
 
 /**
  * Human player class.
- * Does not calculate moves — UI handles it instead.
+ * Does not calculate moves the UI will handle it instead.
  */
 public class HumanPlayer extends Player {
 

@@ -1,10 +1,10 @@
 package math130.gui;
 
 /**
- * Hard AI that:
- * 1. tries to win
- * 2. blocks opponent
- * 3. otherwise picks first available spot
+ * This is hard AI and it will
+ * 1. try to win if it cant
+ * 2. it will try to block opponent and if it cant
+ * 3. it just picks first available spot
  */
 public class HardAIPlayer extends Player {
 
@@ -68,10 +68,7 @@ public class HardAIPlayer extends Player {
         return count;
     }
 
-    private int[] emptySpot(char[][] b,
-                            int r1,int c1,
-                            int r2,int c2,
-                            int r3,int c3) {
+    private int[] emptySpot(char[][] b, int r1,int c1, int r2,int c2, int r3,int c3) {
 
         if (b[r1][c1] == ' ') return new int[]{r1,c1};
         if (b[r2][c2] == ' ') return new int[]{r2,c2};

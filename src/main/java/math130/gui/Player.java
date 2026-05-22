@@ -1,13 +1,15 @@
 package math130.gui;
 
 /**
- * Abstract player class used for both human and AI players.
+ * This Abstract player class used for both the human and the AI players.
  */
 public abstract class Player {
 
     protected char symbol;
 
-    public Player(char symbol) {this.symbol = symbol;}
+    public Player(char symbol) {
+        this.symbol = symbol;
+    }
 
     public char getSymbol() {
         return symbol;
@@ -15,7 +17,7 @@ public abstract class Player {
 
     /**
      * Returns the move the player wants to make.
-     * AI overrides this. Human returns null (handled by UI).
+     * AI will actually override this and Human will returns null since its handled by UI.
      */
     public abstract int[] makeMove(GameBoard board);
 }

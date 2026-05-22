@@ -2,7 +2,7 @@ package math130.gui;
 
 /**
  * Represents the Tic Tac Toe board logic.
- * Handles moves, win checking, and board state.
+ * this andles moves, win checking and the board state.
  */
 public class GameBoard {
 
