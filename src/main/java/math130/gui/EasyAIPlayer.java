@@ -26,7 +26,7 @@ public class EasyAIPlayer extends Player {
         ArrayList<int[]> emptySpots = new ArrayList<>();
         char[][] b = board.getBoard();
 
-        // Find all empty spaces
+        // This will find all empty spaces
         for (int r = 0; r < 3; r++) {
             for (int c = 0; c < 3; c++) {
                 if (b[r][c] == ' ') {
@@ -35,7 +35,7 @@ public class EasyAIPlayer extends Player {
             }
         }
 
-        // Pick a random empty spot
+        // This will pick a random empty spot
         return emptySpots.get(random.nextInt(emptySpots.size()));
     }
 }
