@@ -13,7 +13,7 @@ import javafx.scene.control.Label;
  * - the switches between players
  * - runs AI moves
  * - checks for win and tie conditions
- * - Controls menu navigation which is just the home and the game modes
+ * - Controls menu navigation which is really just the home and the game modes
  */
 public class GameController {
 
