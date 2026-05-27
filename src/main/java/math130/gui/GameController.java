@@ -153,7 +153,9 @@ public class GameController {
         button.setText(String.valueOf(currentPlayer.getSymbol()));
 
         // Check if game ended
-        if (checkGameEnd()) return;
+        if (checkGameEnd()) {
+            return;
+        }
 
         switchTurn();
 
