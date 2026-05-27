@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Easy AI that chooses a random available spot on the board.
- * This represents the lowest difficulty mode.
+ * Easy AI that chooses a random available spot on the board
+ * This is the lowest difficulty mode
  */
 public class EasyAIPlayer extends Player {
 
     private Random random = new Random();
-
+    /**
+     * This is the constructor and it takes in the symbol and gives it to the parent player abtract class
+     */
     public EasyAIPlayer(char symbol) {
         super(symbol);
     }

@@ -27,6 +27,8 @@ public class GameController {
 
     private boolean gameOver = true;
 
+    private Button[][] buttons;
+
     // The UI elements
 
     @FXML private Button b00, b01, b02;
@@ -48,6 +50,13 @@ public class GameController {
      */
     @FXML
     public void initialize() {
+
+        buttons = new Button[][] {
+                {b00, b01, b02},
+                {b10, b11, b12},
+                {b20, b21, b22}
+        };
+
         goHome();
     }
 
@@ -131,10 +140,14 @@ public class GameController {
      */
     private void handleMove(int r, int c, Button button) {
 
-        if (gameOver) return;
+        if (gameOver) {
+            return;
+        }
 
         // Try to place move on board
-        if (!board.placeMove(r, c, currentPlayer.getSymbol())) return;
+        if (!board.placeMove(r, c, currentPlayer.getSymbol())) {
+            return;
+        }
 
         // Update UI
         button.setText(String.valueOf(currentPlayer.getSymbol()));
@@ -145,8 +158,7 @@ public class GameController {
         switchTurn();
 
         // If its AIs turn then trigger the AI move
-        if (currentPlayer instanceof EasyAIPlayer ||
-                currentPlayer instanceof HardAIPlayer) {
+        if (currentPlayer instanceof EasyAIPlayer || currentPlayer instanceof HardAIPlayer) {
             aiMove();
         }
     }
@@ -171,14 +183,17 @@ public class GameController {
     private void aiMove() {
 
         int[] move = currentPlayer.makeMove(board);
-        if (move == null) return;
+        if (move == null) {
+            return;
+        }
 
         board.placeMove(move[0], move[1], currentPlayer.getSymbol());
 
-        getButton(move[0], move[1])
-                .setText(String.valueOf(currentPlayer.getSymbol()));
+        buttons[move[0]][move[1]].setText(String.valueOf(currentPlayer.getSymbol()));
 
-        if (checkGameEnd()) return;
+        if (checkGameEnd()) {
+            return;
+        }
 
         switchTurn();
     }
@@ -213,7 +228,11 @@ public class GameController {
      * Switches turn between player 1 and player 2.
      */
     private void switchTurn() {
-        currentPlayer = (currentPlayer == player1) ? player2 : player1;
+        if (currentPlayer == player1) {
+            currentPlayer = player2;
+        } else {
+            currentPlayer = player1;
+        }
     }
 
     // All the UI handelers
@@ -225,23 +244,5 @@ public class GameController {
         b00.setText(""); b01.setText(""); b02.setText("");
         b10.setText(""); b11.setText(""); b12.setText("");
         b20.setText(""); b21.setText(""); b22.setText("");
-    }
-
-    /**
-     * Gets button reference based on row and column.
-     */
-    private Button getButton(int r, int c) {
-        if (r == 0 && c == 0) return b00;
-        if (r == 0 && c == 1) return b01;
-        if (r == 0 && c == 2) return b02;
-
-        if (r == 1 && c == 0) return b10;
-        if (r == 1 && c == 1) return b11;
-        if (r == 1 && c == 2) return b12;
-
-        if (r == 2 && c == 0) return b20;
-        if (r == 2 && c == 1) return b21;
-
-        return b22;
     }
 }

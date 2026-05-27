@@ -5,7 +5,9 @@ package math130.gui;
  * Does not calculate moves the UI will handle it instead.
  */
 public class HumanPlayer extends Player {
-
+    /**
+     * This is the constructer for a human player and it takes in the symbol and gives it to the parent player class
+     */
     public HumanPlayer(char symbol) {
         super(symbol);
     }

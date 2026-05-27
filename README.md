@@ -8,7 +8,6 @@ Tic Tac Toe AI Game
 
 ##  Project Description
 
-This project is a JavaFX Tic Tac Toe game that demonstrates Object Oriented Programming concepts including inheritance, polymorphism, and abstraction.
 
 The application allows users to play Tic Tac Toe in three different modes:
 - Player vs Player (PvP)
@@ -19,14 +18,7 @@ The Easy AI makes random valid moves, while the Hard AI is smart and actually at
 
 The game is built using a GUI created in JavaFX with SceneBuilder and it has a 3x3 interactive board and a menu system for selecting game modes and a status display to show the current game state.
 
----
 
-##  OOP Concepts Used
-
-- **Abstraction:** `Player` is an abstract class
-- **Inheritance:** `HumanPlayer`, `EasyAIPlayer`, and `HardAIPlayer` extend `Player`
-- **Polymorphism:** The `currentPlayer` object dynamically switches behavior based on the player type
-- **Encapsulation:** Game logic is separated into `GameBoard` and `GameController`
 
 ---
 
@@ -42,19 +34,17 @@ The game is built using a GUI created in JavaFX with SceneBuilder and it has a 3
 - “Go Home” reset functionality
 
 ---
+##  GUI Wireframe
+![Wireframe](images/images/wireframe.png)
+
+---
 #  UML Wireframe
 
 ![1](images/images/umlOne.png)
 
 ![2](images/images/umlTwo.png)
 
-##  GUI Wireframe
-
-![1](images/images/imageOne.png)
-
-![2](images/images/imageTwo.png)
-
-![3](images/images/imageThree.png)
+---
 ##  Recording
 ![Gameplay Demo](images/images/recording.gif)
 ---
